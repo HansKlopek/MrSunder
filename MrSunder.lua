@@ -117,25 +117,6 @@ function MrSunderGui_StopMovingOrSizing()
   MrSunderGui.frame:StopMovingOrSizing()
 end
 
-function whomeframe()
-  local f = CreateFrame("Frame","MrSunderFrame",UIParent)
-  f:SetMovable(true);
-  f:EnableMouse(true)
-  f:SetFrameStrata("BACKGROUND");
-  f:SetWidth(128);
-  f:SetHeight(64);
-
-  local t = f:CreateTexture(nil,"BACKGROUND")
-  t:SetTexture("Interface\\Glues\\CharacterCreate\\UI-CharacterCreate-Factions.blp")
-  t:SetAllPoints(f)
-  f.texture = t
-
-  f:SetPoint("CENTER",0,0)
-  f:Show()
-  f:SetScript("OnDragStart", f.StartMoving)
-  f:SetScript("OnDragStop", f.StopMovingOrSizing)
-end
-
 function MrSunder_OnEvent()
   MrSunder_CreateGui();
   if(event == "CHAT_MSG_COMBAT_HOSTILE_DEATH") then
