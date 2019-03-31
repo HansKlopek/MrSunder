@@ -3,14 +3,30 @@
  xsi:schemaLocation="http://www.blizzard.com/wow/ui/
  ..\..\FrameXML\UI.xsd">
   <Script File="MrSunder.lua"/>
-  <Frame name="MrSunderFrame">
-	<Scripts>
-		<OnLoad>
-		  MrSunder_OnLoad();
-		</OnLoad>
-    <OnEvent>
-      MrSunder_OnEvent();
-    </OnEvent>
-	</Scripts>
+  <Frame name="MrSunderFrame" parent="UIParent" enableMouse="true" movable="true">
+    <Scripts>
+      <OnLoad>
+        MrSunder_OnLoad();
+      </OnLoad>
+      <OnEvent>
+        MrSunder_OnEvent();
+      </OnEvent>
+			<!-- <OnDragStart> MrSunderGui_StartMoving(); </OnDragStart>
+			<OnDragStop> MrSunderGui_StopMovingOrSizing(); </OnDragStop> -->
+      <OnMouseDown>
+        MrSunderGui_StartMoving();
+      </OnMouseDown>
+      <OnMouseUp>
+        MrSunderGui_StopMovingOrSizing();
+      </OnMouseUp>
+    </Scripts>
+    <Size x="200" y="100" />
+    <Anchors><Anchor point="CENTER" relativeTo="UIParent"/></Anchors>
+    <Frames>
+      <Frame name="MrSunderBodyFrame" parent="MrSunderFrame">
+        <Size x="200" y="110" />
+        <Anchors><Anchor point="TOPLEFT" relativeTo="MrSunderFrame"/></Anchors>
+      </Frame>
+    </Frames>
   </Frame>
 </Ui>

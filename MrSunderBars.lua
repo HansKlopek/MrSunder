@@ -2,30 +2,29 @@ MrSunderBars = {};
 function MrSunder_CreateBars()
   for i=1,5 do
     MrSunder["Timestamp" .. i] = 0;
-    local f = CreateFrame("StatusBar", "SunderBar" .. i, UIParent);
+    local f = CreateFrame("Frame", "SunderBar" .. i, MrSunderGui.body);
     f = getglobal("SunderBar" .. i);
     f:SetWidth(200);
-    f:SetHeight(20);
-    f:SetPoint("CENTER", UIParent, "CENTER",
-      MrSunderOffsetX - MrSunderBarXPadding * (i - 1),
-      MrSunderOffsetY - MrSunderBarYPadding * (i - 1));
-    f:SetBackdrop({bgFile = [[Interface\ChatFrame\ChatFrameBackground]]})
-    f:SetStatusBarColor(0, 0, 0, 0.7)
-    f:SetStatusBarTexture([[Interface\TargetingFrame\UI-StatusBar]])
-    f:SetBackdropColor(0, 0.5, 1)
-    f:SetMinMaxValues(0, 30);
+    f:SetHeight(22);
+    f:SetPoint("TOPLEFT", 0, - (MrSunderOffsetY * (i - 1)));
+    local labelBg = f:CreateTexture(nil, "ARTWORK");
+    labelBg:SetPoint("TOPLEFT", 0, 0);
+    labelBg:SetHeight(22);
+    labelBg:SetWidth(200);
+    labelBg:SetTexture(0, 0, 0, 0.3);
+
     local l = f:CreateFontString("SunderBarLabel" .. i, "OVERLAY", "GameFontHighlight");
     l = getglobal("SunderBarLabel" .. i);
-  	l:SetWidth(200);
-  	l:SetPoint("TOPLEFT", 0, -20);
-  	l:SetTextColor(0.3, 0.51, 0.77);
-  	l:SetText("MRSUNDER_DEFAULT_BAR_TEXT" .. i);
+  	l:SetPoint("TOPLEFT", 25, -5);
+  	l:SetTextColor(1, 1, 1);
+    l:SetText("MRSUNDER_DEFAULT_BAR_TEXT" .. i);
+    l:SetFont(MrSunderFontLight, 10);
     local l = f:CreateFontString("SunderBarTimer" .. i, "OVERLAY", "GameFontHighlight");
     l = getglobal("SunderBarTimer" .. i);
-  	l:SetWidth(200);
-  	l:SetPoint("TOPLEFT", 0, 0);
-  	l:SetTextColor(1, 0.2, 0.2);
-  	l:SetText("MRSUNDER_DEFAULT_BAR_TEXT" .. i);
+  	l:SetPoint("TOPLEFT", 7, -5);
+  	l:SetTextColor(1, 1, 1);
+    l:SetText("MRSUNDER_DEFAULT_BAR_TEXT" .. i);
+    l:SetFont(MrSunderFontBold, 10);
     f:Hide();
     f.Index = i;
 
@@ -38,7 +37,7 @@ function MrSunder_CreateBars()
         f:Hide();
           MrSunder["Timestamp" .. f.Index] = 0;
       end
-    	f:SetValue(timestamp)
+    	-- f:SetValue(timestamp)
     end)
   end
 end
