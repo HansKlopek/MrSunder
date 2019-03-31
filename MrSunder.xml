@@ -11,8 +11,6 @@
       <OnEvent>
         MrSunder_OnEvent();
       </OnEvent>
-			<!-- <OnDragStart> MrSunderGui_StartMoving(); </OnDragStart>
-			<OnDragStop> MrSunderGui_StopMovingOrSizing(); </OnDragStop> -->
       <OnMouseDown>
         MrSunderGui_StartMoving();
       </OnMouseDown>
